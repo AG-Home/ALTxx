@@ -1,6 +1,7 @@
 /.metadata/
 /.jxbrowser.userdata/
 /ALT01/.settings/
-/ALT01/.Debug/
+/ALT01/Debug/
 /dvt/
 /RemoteSystemsTempFiles/
+build.log
