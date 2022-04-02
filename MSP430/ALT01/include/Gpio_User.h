@@ -23,7 +23,7 @@ void gpioInit(void);
 
 void gpioConf(void);
 
-uint8_t readRegister(uint8_t u_bit, uint8_t u_port);
+uint8_t gpioReadBit(uint8_t u_bit, uint8_t u_port);
 
 
 #endif
