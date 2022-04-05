@@ -18,6 +18,7 @@ uint8_t startUpState(void)
             if(sensors[3] == SENSOR4)
             {
                 last = 1;
+                P2OUT |= LED4;
             }
             index -= 1; 
             break;
@@ -30,6 +31,7 @@ uint8_t startUpState(void)
             if(sensors[2] == SENSOR3)
             {
                 last = 1;
+                P2OUT |= LED3;
             }
             index -= 1;
             break;
@@ -42,6 +44,7 @@ uint8_t startUpState(void)
             if(sensors[1] == SENSOR2)
             {
                 last = 1;
+                P2OUT |= LED2;
             }
             index -= 1;
             break;
@@ -50,12 +53,30 @@ uint8_t startUpState(void)
             if(last == 1 && sensors[0] == 0)
             {
                 retVal |= SENSOR1;
+                P2OUT |= LED1;
             }
             index -= 1;
             break;
         default:
             break;
         }
+    }
+
+    return retVal;
+}
+
+uint8_t errorTask(uint8_t u_error, uint8_t u_errorType)
+{
+    uint8_t retVal = 0;
+
+    switch (u_errorType)
+    {
+    case ERROR_SENSOR_NOT_OK:
+        P2OUT |= LEDG;
+        P2OUT |= LEDR;
+        break;
+    default:
+        break;
     }
 
     return retVal;

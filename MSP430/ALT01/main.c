@@ -12,6 +12,10 @@ int main(void)
 	gpioInit();
 	gpioConf();
 	errorVar = startUpState();
+	if(errorVar > 0)
+	{
+		errorTask(errorVar, ERROR_SENSOR_NOT_OK);
+	}
 
 	while(1);
 
