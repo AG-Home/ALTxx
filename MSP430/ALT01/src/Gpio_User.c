@@ -9,7 +9,7 @@ void gpioInit(void)
 	P3DIR = ALL_BITS;
 	P1OUT = 0;
 	P2OUT = 0;
-	P3OUT = 0;
+	P3OUT = 0
 }
 
 void gpioConf(void)

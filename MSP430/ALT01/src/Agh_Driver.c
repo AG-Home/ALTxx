@@ -25,7 +25,7 @@ uint8_t startUpState(void)
             sensors[2] = gpioReadBit(SENSOR3, PORT1);
             if(last == 1 && sensors[2] == 0)
             {
-                retVal += 1;
+                retVal |= SENSOR3;
             }
             if(sensors[2] == SENSOR3)
             {
@@ -37,7 +37,7 @@ uint8_t startUpState(void)
             sensors[1] = gpioReadBit(SENSOR2, PORT1);
             if(last == 1 && sensors[1] == 0)
             {
-                retVal += 1;
+                retVal |= SENSOR2;
             }
             if(sensors[1] == SENSOR2)
             {
@@ -49,7 +49,7 @@ uint8_t startUpState(void)
             sensors[0] = gpioReadBit(SENSOR1, PORT1);
             if(last == 1 && sensors[0] == 0)
             {
-                retVal += 1;
+                retVal |= SENSOR1;
             }
             index -= 1;
             break;

@@ -5,11 +5,13 @@
 
 int main(void)
 {
-	
 	WDTCTL = WDTPW | WDTHOLD; //* stop watchdog timer
+	
+	uint8_t errorVar;
+
 	gpioInit();
 	gpioConf();
-	startUpState();
+	errorVar = startUpState();
 
 	while(1);
 
