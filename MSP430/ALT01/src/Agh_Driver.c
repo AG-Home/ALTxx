@@ -15,6 +15,7 @@ uint8_t startUpState(void)
         {
         case 4:
             sensors[3] = gpioReadBit(SENSOR4,PORT1);
+            sensors[3] ^= SENSOR4;  //! invert valor because is inverted in HW
             if(sensors[3] == SENSOR4)
             {
                 last = 1;
@@ -24,6 +25,7 @@ uint8_t startUpState(void)
             break;
         case 3:
             sensors[2] = gpioReadBit(SENSOR3, PORT1);
+            sensors[2] ^= SENSOR3;                       //! invert valor because is inverted in HW
             if(last == 1 && sensors[2] == 0)
             {
                 retVal |= SENSOR3;
@@ -37,6 +39,7 @@ uint8_t startUpState(void)
             break;
         case 2:
             sensors[1] = gpioReadBit(SENSOR2, PORT1);
+            sensors[1] ^= SENSOR2;                       //! invert valor because is inverted in HW
             if(last == 1 && sensors[1] == 0)
             {
                 retVal |= SENSOR2;
@@ -50,9 +53,13 @@ uint8_t startUpState(void)
             break;
         case 1:
             sensors[0] = gpioReadBit(SENSOR1, PORT1);
+            sensors[0] ^= SENSOR1;                      //! invert valor because is inverted in HW
             if(last == 1 && sensors[0] == 0)
             {
                 retVal |= SENSOR1;
+            }
+            if(sensors[0] == SENSOR1)
+            {
                 P2OUT |= LED1;
             }
             index -= 1;

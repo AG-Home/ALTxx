@@ -16,6 +16,8 @@ void gpioConf(void)
 {
 	//* set all P2 as output
 	P2DIR = ALL_BITS;
+	P2SEL = 0;
+	P2SEL2 = 0;
 	P2OUT = 0;
 
 	//* set P1.0-P1.3 as input
