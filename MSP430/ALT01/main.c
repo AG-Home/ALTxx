@@ -2,15 +2,18 @@
 #include <stdint.h>
 #include "Gpio_User.h"
 #include "Agh_Driver.h"
+#include "Clock_User.h"
 
 int main(void)
 {
 	WDTCTL = WDTPW | WDTHOLD; //* stop watchdog timer
-	
-	uint8_t errorVar;
 
+	clockInit();
 	gpioInit();
 	gpioConf();
+
+	uint8_t errorVar;
+
 	errorVar = startUpState();
 	if(errorVar > 0)
 	{
