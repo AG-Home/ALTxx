@@ -88,3 +88,8 @@ uint8_t errorTask(uint8_t u_error, uint8_t u_errorType)
 
     return retVal;
 }
+
+void idleState(void)
+{
+    // TODO go to pump state in case an interrupt occurs
+}

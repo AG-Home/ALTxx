@@ -15,4 +15,6 @@ uint8_t startUpState(void);
 ///     - Sensor not working [0]
 uint8_t errorTask(uint8_t u_error, uint8_t u_errorType);
 
+void idleState(void);
+
 #endif
