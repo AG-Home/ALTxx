@@ -93,3 +93,12 @@ void idleState(void)
 {
     // TODO go to pump state in case an interrupt occurs
 }
+
+void pumpUpState(void)
+{
+    // TODO set SSR output as 1
+
+    // TODO CHECK if an error occurs
+
+    // TODO go to IDLE STATE after interrrupt in Sensor 4 occurs 
+}

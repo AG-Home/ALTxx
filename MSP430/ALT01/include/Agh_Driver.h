@@ -17,4 +17,6 @@ uint8_t errorTask(uint8_t u_error, uint8_t u_errorType);
 
 void idleState(void);
 
+void pumpUpState(void);
+
 #endif
