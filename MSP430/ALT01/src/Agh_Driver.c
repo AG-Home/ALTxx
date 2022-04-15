@@ -79,8 +79,11 @@ uint8_t errorTask(uint8_t u_error, uint8_t u_errorType)
     switch (u_errorType)
     {
     case ERROR_SENSOR_NOT_OK:
+        // clear Sensor output
+        P2OUT &= ~LED1 & ~LED2 & ~LED3 & ~LED4;
         P2OUT |= LEDG;
         P2OUT |= LEDR;
+        P2OUT |= u_error;   // Set 1 the Sensor with the error
         break;
     default:
         break;
