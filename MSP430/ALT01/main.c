@@ -19,6 +19,8 @@ int main(void)
 	if(errorVar > 0)
 	{
 		errorTask(errorVar, ERROR_SENSOR_NOT_OK);
+		P2OUT |= BUZZR;
+		while (1);	// Wait for external reset 			
 	}
 
 	while(1);
