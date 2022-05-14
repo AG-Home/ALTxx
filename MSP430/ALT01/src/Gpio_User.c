@@ -25,11 +25,6 @@ void gpioConf(void)
 	P1DIR &= ~SENSOR2;
 	P1DIR &= ~SENSOR3;
 	P1DIR &= ~SENSOR4;
-	//* Pullup/pulldown resistor disabled
-	P1REN |= SENSOR1 | SENSOR2 | SENSOR3 | SENSOR4;
-	P1IE |= SENSOR1 | SENSOR2 | SENSOR3 | SENSOR4;	//* Enable interrupt for bit 0-3
-	P1IES |= SENSOR1 | SENSOR2 | SENSOR3 | SENSOR4;	//* The bits 0-3 are set with a high-to-low transition
-	P1IFG &= ~ALL_BITS; //* clear interrupts
 }
 
 /// uint_t u_bit

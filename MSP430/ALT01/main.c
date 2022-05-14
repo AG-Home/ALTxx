@@ -9,21 +9,39 @@ int main(void)
 {
 	WDTCTL = WDTPW | WDTHOLD; //* stop watchdog timer
 
+	uint8_t errorVar;
+
+	// Initialization
 	clockInit();
 	gpioInit();
 	gpioConf();
+	timerAInit();
+	interruptEnable();
 
-	uint8_t errorVar;
+	currentState = STARTUP;
 
-	errorVar = startUpState();
-	if(errorVar > 0)
+
+
+	// errorVar = startUpState();
+
+	// if(errorVar > 0)
+	// {
+	// 	errorTask(errorVar, ERROR_SENSOR_NOT_OK);
+	// 	P2OUT |= BUZZR;
+	// 	while (1)	// Wait for external reset 	
+	// 	{
+	// 		if(counter == 49)
+	// 		{
+	// 			toggleTimerError(errorVar);
+	// 		}
+	// 	}		
+	// }
+
+
+	while(1)
 	{
-		errorTask(errorVar, ERROR_SENSOR_NOT_OK);
-		P2OUT |= BUZZR;
-		while (1);	// Wait for external reset 			
+		AGH_v_machineStates();
 	}
-
-	while(1);
 
 	return 0;
 }

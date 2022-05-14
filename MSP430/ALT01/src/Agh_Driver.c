@@ -1,5 +1,5 @@
 #include "Agh_Driver.h"
-
+#include "Interrupt_User.h"
 
 uint8_t startUpState(void)
 {
@@ -69,6 +69,14 @@ uint8_t startUpState(void)
         }
     }
 
+    if(retVal != 0)
+    {
+        currentState = ERROR;
+    }
+    else
+    {
+        currentState = IDLE;
+    }
     return retVal;
 }
 
@@ -83,7 +91,7 @@ uint8_t errorTask(uint8_t u_error, uint8_t u_errorType)
         P2OUT &= ~LED1 & ~LED2 & ~LED3 & ~LED4;
         P2OUT |= LEDG;
         P2OUT |= LEDR;
-        P2OUT |= u_error;   // Set 1 the Sensor with the error
+        // P2OUT |= u_error;   // Set 1 the Sensor with the error
         break;
     default:
         break;
@@ -104,4 +112,26 @@ void pumpUpState(void)
     // TODO CHECK if an error occurs
 
     // TODO go to IDLE STATE after interrrupt in Sensor 4 occurs 
+}
+
+void AGH_v_machineStates(void)
+{
+    switch (currentState)
+    {
+    case IDLE:
+        /* code */
+        break;
+    case ERROR:
+        /* code */
+        break;
+    case PUMPUP:
+        /* code */
+        break;  
+    case STARTUP:
+        startUpState();
+        /* code */
+        break;    
+    default:
+        break;
+    }
 }

@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 extern uint8_t counter;
+
 void interruptEnable(void);
 
 void interruptDisable(void);
@@ -12,5 +13,6 @@ void interruptDisable(void);
 /// Toggle for 0.5sec the pin(s) with a possible error 
 void toggleTimerError(uint8_t u_data);
 
+void INT_v_gpioIntEn(void);
 
 #endif
