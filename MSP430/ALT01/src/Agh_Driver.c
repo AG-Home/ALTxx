@@ -1,7 +1,7 @@
 #include "Agh_Driver.h"
 #include "Interrupt_User.h"
 
-uint8_t startUpState(void)
+void AGH_v_startUpState(void)
 {
     uint8_t index = 4;
     const uint8_t PORT1 = 1;
@@ -69,15 +69,22 @@ uint8_t startUpState(void)
         }
     }
 
-    if(retVal != 0)
+    if(retVal != 0) // An error occurs
     {
         currentState = ERROR;
     }
     else
     {
-        currentState = IDLE;
+        // If tank is empty
+        if(sensors[0] == 0)
+        {
+            currentState = PUMPUP;
+        }
+        else
+        {
+            currentState = IDLE;
+        }
     }
-    return retVal;
 }
 
 uint8_t errorTask(uint8_t u_error, uint8_t u_errorType)
@@ -125,11 +132,9 @@ void AGH_v_machineStates(void)
         /* code */
         break;
     case PUMPUP:
-        /* code */
         break;  
     case STARTUP:
-        startUpState();
-        /* code */
+        AGH_v_startUpState();
         break;    
     default:
         break;

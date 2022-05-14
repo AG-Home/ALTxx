@@ -17,7 +17,7 @@ enum STATE
     STARTUP = 3
 };
 
-uint8_t startUpState(void);
+void AGH_v_startUpState(void);
 
 /// 
 /// uint8_t u_error -> content of the error
