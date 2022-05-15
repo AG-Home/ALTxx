@@ -1,5 +1,6 @@
 #include "Clock_User.h"
 
+uint8_t counterTimerA = 0;
 
 void clockInit(void)
 {

@@ -1,13 +1,13 @@
 #include "Interrupt_User.h"
 #include "Gpio_User.h"
+#include "Clock_User.h"
 
-// uint8_t counter = 0;
-uint8_t counter = 0;
+
 
 void interruptEnable(void)
 {
-    _BIS_SR(GIE);
-    // __enable_interrupt();
+    // _BIS_SR(GIE);
+    __enable_interrupt();
 }
 
 void interruptDisable(void)
@@ -16,10 +16,10 @@ void interruptDisable(void)
     // __disable_interrupt();
 }
 
-void toggleTimerError(uint8_t u_data)
+void INT_v_toggleTimerError(uint8_t u_data)
 {
     P2OUT ^= u_data;
-    counter = 0;
+    counterTimerA = 0;
 }
 
 void INT_v_gpioIntEn(void)
@@ -36,5 +36,10 @@ void INT_v_gpioIntEn(void)
 #pragma vector = TIMER0_A0_VECTOR
 __interrupt void Timer_A_CCR0_ISR(void)
 {
-    counter++;
+    counterTimerA++;
+
+    if(counterTimerA == 255)
+    {
+        counterTimerA = 0;
+    }
 }

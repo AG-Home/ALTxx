@@ -1,5 +1,7 @@
 #include "Agh_Driver.h"
 #include "Interrupt_User.h"
+#include "Clock_User.h"
+
 
 void AGH_v_startUpState(void)
 {
@@ -72,6 +74,9 @@ void AGH_v_startUpState(void)
     if(retVal != 0) // An error occurs
     {
         currentState = ERROR;
+        u_error = retVal;
+        counterTimerA  = 0;
+        u_errorType = ERROR_SENSOR_NOT_OK;
     }
     else
     {
@@ -87,24 +92,29 @@ void AGH_v_startUpState(void)
     }
 }
 
-uint8_t errorTask(uint8_t u_error, uint8_t u_errorType)
+void AGH_v_errorState(void)
 {
-    uint8_t retVal = 0;
-
     switch (u_errorType)
     {
     case ERROR_SENSOR_NOT_OK:
-        // clear Sensor output
+        // clear Sensor LEDS 
         P2OUT &= ~LED1 & ~LED2 & ~LED3 & ~LED4;
+
+        // Show LEDs indicators for this error
         P2OUT |= LEDG;
         P2OUT |= LEDR;
         // P2OUT |= u_error;   // Set 1 the Sensor with the error
+        u_errorType = ERROR_SENSOR_NOT_OK_TOGGLE;
         break;
+    case ERROR_SENSOR_NOT_OK_TOGGLE:
+        if(counterTimerA == 49)
+        {
+            INT_v_toggleTimerError(u_error);
+        }
     default:
         break;
     }
 
-    return retVal;
 }
 
 void idleState(void)
@@ -129,7 +139,7 @@ void AGH_v_machineStates(void)
         /* code */
         break;
     case ERROR:
-        /* code */
+        AGH_v_errorState();
         break;
     case PUMPUP:
         break;  

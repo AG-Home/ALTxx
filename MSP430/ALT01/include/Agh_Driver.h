@@ -1,13 +1,22 @@
 #ifndef AGH_DRIVER
 #define AGH_DRIVER
 
+#pragma once
+
 #include <msp430g2553.h>
 #include <stdint.h>
 #include "Gpio_User.h"
 
 #define ERROR_SENSOR_NOT_OK 0 
+#define ERROR_SENSOR_NOT_OK_TOGGLE 1 
 
 uint8_t currentState;
+static uint8_t errorCounterTimer = 0;
+static uint8_t u_error = 0;
+static uint8_t u_errorType = 0;
+static uint8_t flag=0;
+
+
 
 enum STATE
 {
@@ -23,7 +32,8 @@ void AGH_v_startUpState(void);
 /// uint8_t u_error -> content of the error
 /// uint8_t u_errorType -> type of error:
 ///     - Sensor not working [0]
-uint8_t errorTask(uint8_t u_error, uint8_t u_errorType);
+void AGH_v_errorState(void);
+
 
 void idleState(void);
 

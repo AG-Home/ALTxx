@@ -9,14 +9,11 @@ int main(void)
 {
 	WDTCTL = WDTPW | WDTHOLD; //* stop watchdog timer
 
-	uint8_t errorVar;
-
 	// Initialization
 	clockInit();
 	gpioInit();
 	gpioConf();
 	timerAInit();
-	interruptEnable();
 
 	currentState = STARTUP;
 
@@ -36,13 +33,12 @@ int main(void)
 	// 		}
 	// 	}		
 	// }
-
+	interruptEnable();
 
 	while(1)
 	{
 		AGH_v_machineStates();
 	}
 
-	return 0;
 }
 
