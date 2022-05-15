@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 
-void interruptEnable(void);
+void INT_v_interruptEnable(void);
 
 void interruptDisable(void);
 
@@ -15,5 +15,7 @@ void interruptDisable(void);
 void INT_v_toggleTimerError(uint8_t u_data);
 
 void INT_v_gpioIntEn(void);
+
+void INT_v_systemTimerEn(void);
 
 #endif

@@ -4,10 +4,10 @@
 
 
 
-void interruptEnable(void)
+void INT_v_interruptEnable(void)
 {
-    // _BIS_SR(GIE);
-    __enable_interrupt();
+    _BIS_SR(GIE);
+    // __enable_interrupt();
 }
 
 void interruptDisable(void)
@@ -19,7 +19,7 @@ void interruptDisable(void)
 void INT_v_toggleTimerError(uint8_t u_data)
 {
     P2OUT ^= u_data;
-    counterTimerA = 0;
+    counterErrorToggle = 0;
 }
 
 void INT_v_gpioIntEn(void)
@@ -31,15 +31,21 @@ void INT_v_gpioIntEn(void)
 	P1IFG &= ~ALL_BITS; //* clear interrupts
 }
 
+void INT_v_systemTimerEn(void)
+{
+    TA0CCTL0 |= CCIE;    // Enable interrupt
+}
 
 //Timer A ISR
 #pragma vector = TIMER0_A0_VECTOR
 __interrupt void Timer_A_CCR0_ISR(void)
 {
-    counterTimerA++;
-
-    if(counterTimerA == 255)
+    systemCounter++;
+    if(systemCounter == MS_100)
     {
-        counterTimerA = 0;
+        systemCycle = 1;
+        systemCounter = 0;
     }
+
 }
+

@@ -1,8 +1,10 @@
 #include "Clock_User.h"
 
-uint8_t counterTimerA = 0;
+uint8_t systemCounter = 0;
+uint8_t counterErrorToggle = 0;
+uint8_t systemCycle = 0;
 
-void clockInit(void)
+void CLK_v_clockInit(void)
 {
     // Configusre DCO
     DCOCTL = CALDCO_1MHZ;   
@@ -13,9 +15,9 @@ void clockInit(void)
 
 }
 
-void timerAInit(void)
+void CLK_v_timerAInit(void)
 {
-    TACTL |= TACTL_SMCLK | TACTL_DIV1 | TACTL_UPMODE;
-    TA0CCR0 = 10000 - 1;    // 10ms
-    TACCTL0 |= CCIE;    // Enable interrupt
+    TA0CTL |= TACTL_SMCLK | TACTL_DIV1 | TACTL_UPMODE;
+    TA0CCR0 = 50000 - 1;    // 50ms
+    TA0CCR1 = 50000 - 1;    // 50ms
 }

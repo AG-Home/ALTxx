@@ -75,7 +75,6 @@ void AGH_v_startUpState(void)
     {
         currentState = ERROR;
         u_error = retVal;
-        counterTimerA  = 0;
         u_errorType = ERROR_SENSOR_NOT_OK;
     }
     else
@@ -89,6 +88,7 @@ void AGH_v_startUpState(void)
         {
             currentState = IDLE;
         }
+        P2OUT |= LEDG;
     }
 }
 
@@ -103,11 +103,12 @@ void AGH_v_errorState(void)
         // Show LEDs indicators for this error
         P2OUT |= LEDG;
         P2OUT |= LEDR;
-        // P2OUT |= u_error;   // Set 1 the Sensor with the error
         u_errorType = ERROR_SENSOR_NOT_OK_TOGGLE;
         break;
+
     case ERROR_SENSOR_NOT_OK_TOGGLE:
-        if(counterTimerA == 49)
+        counterErrorToggle++;
+        if(counterErrorToggle == MS_500)
         {
             INT_v_toggleTimerError(u_error);
         }

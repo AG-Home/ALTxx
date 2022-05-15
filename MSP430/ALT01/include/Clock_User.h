@@ -4,7 +4,9 @@
 #include <msp430g2553.h>
 #include <stdint.h>
 
-extern uint8_t counterTimerA;
+extern uint8_t systemCounter;
+extern uint8_t counterErrorToggle;
+extern uint8_t systemCycle;
 
 
 #define MCLK_DCOCLK 0b11000000
@@ -18,9 +20,13 @@ extern uint8_t counterTimerA;
 #define TACTL_DIV1 0b0000000000 // Divider by 1
 #define TACTL_UPMODE 0b0000010000 // Up mode: the timer counts up to TACCR0.
 
+#define MS_100 2
+#define MS_500 5
 
-void clockInit(void);
 
-void timerAInit(void);
+void CLK_v_clockInit(void);
+
+void CLK_v_timerAInit(void);
+
 
 #endif
