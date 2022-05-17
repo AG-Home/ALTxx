@@ -25,6 +25,8 @@ void gpioConf(void)
 	P1DIR &= ~SENSOR2;
 	P1DIR &= ~SENSOR3;
 	P1DIR &= ~SENSOR4;
+	// Pullup/pulldown resistor disabled
+	P1REN |= SENSOR1 | SENSOR2 | SENSOR3 | SENSOR4;
 }
 
 /// uint_t u_bit

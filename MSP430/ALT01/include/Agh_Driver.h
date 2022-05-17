@@ -10,13 +10,14 @@
 #define ERROR_SENSOR_NOT_OK 0 
 #define ERROR_SENSOR_NOT_OK_TOGGLE 1 
 
+#define UP 0 
+#define DOWN 1 
+
 uint8_t currentState;
 static uint8_t errorCounterTimer = 0;
 static uint8_t u_error = 0;
 static uint8_t u_errorType = 0;
-static uint8_t flag=0;
-
-
+uint8_t intFlagGpio;
 
 enum STATE
 {
@@ -35,7 +36,7 @@ void AGH_v_startUpState(void);
 void AGH_v_errorState(void);
 
 
-void idleState(void);
+void AGH_v_idleState(void);
 
 void pumpUpState(void);
 

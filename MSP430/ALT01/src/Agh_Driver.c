@@ -83,10 +83,12 @@ void AGH_v_startUpState(void)
         if(sensors[0] == 0)
         {
             currentState = PUMPUP;
+            INT_v_gpioIntEn(UP);
         }
         else
         {
             currentState = IDLE;
+            INT_v_gpioIntEn(DOWN);
         }
         P2OUT |= LEDG;
     }
@@ -118,9 +120,18 @@ void AGH_v_errorState(void)
 
 }
 
-void idleState(void)
+void AGH_v_idleState(void)
 {
-    // TODO go to pump state in case an interrupt occurs
+    if(intFlagGpio != 0)
+    {
+        P2OUT &= ~(intFlagGpio);
+        intFlagGpio = 0;
+        if(intFlagGpio == SENSOR1)
+        {
+            currentState = PUMPUP;
+            INT_v_gpioIntEn(UP);
+        }
+    }
 }
 
 void pumpUpState(void)
@@ -137,7 +148,7 @@ void AGH_v_machineStates(void)
     switch (currentState)
     {
     case IDLE:
-        /* code */
+        AGH_v_idleState();
         break;
     case ERROR:
         AGH_v_errorState();
