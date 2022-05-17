@@ -6,6 +6,7 @@
 
 extern uint8_t systemCounter;
 extern uint8_t counterErrorToggle;
+extern uint8_t counterPumpToggle;
 extern uint8_t systemCycle;
 
 

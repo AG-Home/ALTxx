@@ -53,6 +53,7 @@ __interrupt void Timer_A_CCR0_ISR(void)
         systemCycle = 1;
         systemCounter = 0;
     }
+    TA0CCTL0 &= ~CCIFG;
 
 }
 

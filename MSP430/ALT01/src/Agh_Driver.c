@@ -83,6 +83,7 @@ void AGH_v_startUpState(void)
         if(sensors[0] == 0)
         {
             currentState = PUMPUP;
+            pumpUpStateType = PUMP_ON;
             INT_v_gpioIntEn(UP);
         }
         else
@@ -125,22 +126,58 @@ void AGH_v_idleState(void)
     if(intFlagGpio != 0)
     {
         P2OUT &= ~(intFlagGpio);
-        intFlagGpio = 0;
         if(intFlagGpio == SENSOR1)
         {
             currentState = PUMPUP;
+            pumpUpStateType = PUMP_ON;
             INT_v_gpioIntEn(UP);
         }
+        intFlagGpio = 0;
     }
 }
 
-void pumpUpState(void)
+void AGH_v_pumpUpState(void)
 {
     // TODO set SSR output as 1
 
     // TODO CHECK if an error occurs
 
     // TODO go to IDLE STATE after interrrupt in Sensor 4 occurs 
+    switch (pumpUpStateType)
+    {
+    case PUMP_ON:
+        P2OUT |= SSR; 
+        pumpUpStateType = PUMP_IDLE;
+        break;
+
+    case PUMP_IDLE:
+        counterPumpToggle++;
+        if(intFlagGpio != 0)
+        {
+            P2OUT |= intFlagGpio;
+            if(intFlagGpio == SENSOR4)
+            {
+                pumpUpStateType = PUMP_OFF;
+            }
+        }
+        intFlagGpio = 0;
+        if(counterPumpToggle == MS_500)
+        {
+            P2OUT ^= LEDG;
+            counterPumpToggle = 0;
+        }
+        break;
+        
+    case PUMP_OFF:
+        P2OUT &= ~SSR;
+        P2OUT |= LEDG;
+        INT_v_gpioIntEn(DOWN);
+        currentState = IDLE;
+
+    default:
+        break;
+    }
+
 }
 
 void AGH_v_machineStates(void)
@@ -154,6 +191,7 @@ void AGH_v_machineStates(void)
         AGH_v_errorState();
         break;
     case PUMPUP:
+        AGH_v_pumpUpState();
         break;  
     case STARTUP:
         AGH_v_startUpState();

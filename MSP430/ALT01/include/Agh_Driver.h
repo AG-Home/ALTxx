@@ -13,7 +13,12 @@
 #define UP 0 
 #define DOWN 1 
 
+#define PUMP_ON 0
+#define PUMP_IDLE 1
+#define PUMP_OFF 2
+
 uint8_t currentState;
+uint8_t pumpUpStateType;
 static uint8_t errorCounterTimer = 0;
 static uint8_t u_error = 0;
 static uint8_t u_errorType = 0;
@@ -38,7 +43,7 @@ void AGH_v_errorState(void);
 
 void AGH_v_idleState(void);
 
-void pumpUpState(void);
+void AGH_v_pumpUpState(void);
 
 void AGH_v_machineStates(void);
 
