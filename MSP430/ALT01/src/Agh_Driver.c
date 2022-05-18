@@ -115,6 +115,7 @@ void AGH_v_errorState(void)
         {
             INT_v_toggleTimerError(u_error);
         }
+        break;
     default:
         break;
     }
@@ -173,7 +174,7 @@ void AGH_v_pumpUpState(void)
         P2OUT |= LEDG;
         INT_v_gpioIntEn(DOWN);
         currentState = IDLE;
-
+        break;
     default:
         break;
     }
