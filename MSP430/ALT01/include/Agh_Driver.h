@@ -1,3 +1,14 @@
+/**
+ * @file Agh_Driver.h
+ * @author My Self
+ * @date 9 Sep 2012
+ * @brief File containing example of doxygen usage for quick reference.
+ *
+ r* Here typically goes a more extensive explanation of what the header
+ * defines. Doxygens tags are words preceeded by either a backslash @\
+ * o by an at symbol @@.
+ */
+
 #ifndef AGH_DRIVER
 #define AGH_DRIVER
 

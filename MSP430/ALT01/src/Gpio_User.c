@@ -1,3 +1,13 @@
+/**
+ * @file Gpio_User.c
+ * @author My Self
+ * @date 9 Sep 2012
+ * @brief File containing example of doxygen usage for quick reference.
+ *
+ r* Here typically goes a more extensive explanation of what the header
+ * defines. Doxygens tags are words preceeded by either a backslash @\
+ * o by an at symbol @@.
+ */
 #include "Gpio_User.h"
 
 void gpioInit(void)

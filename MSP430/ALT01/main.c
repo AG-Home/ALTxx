@@ -1,3 +1,15 @@
+/**
+ * @file main.c
+ * @author My Self
+ * @date 9 Sep 2012
+ * @brief File containing example of doxygen usage for quick reference.
+ *
+ * Here typically goes a more extensive explanation of what the header
+ * defines. Doxygens tags are words preceeded by either a backslash @\
+ * or by an at symbol @@.
+ */
+
+
 #include "Agh_Driver.h"
 #include "Clock_User.h"
 #include "Gpio_User.h"
