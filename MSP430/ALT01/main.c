@@ -1,8 +1,8 @@
 /****************************************************************************
- * \file main.c
- * \author Marco Aguilar
+ * \file    main.c
  * \version 1.0
- * \brief main
+ * \author  Marco Aguilar
+ * \brief   main
  ****************************************************************************/
 
 #include <Agh_Driver.h>
@@ -12,11 +12,11 @@
 #include <msp430g2553.h>
 #include <stdint.h>
 
-/////////////////////////////////////////////////
-///
-/// main function where all is called
-///
-/////////////////////////////////////////////////
+/**
+ *
+ * main function where all is called
+ *
+ */
 int main(void);
 
 int main(void)
