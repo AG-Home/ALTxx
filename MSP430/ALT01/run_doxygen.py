@@ -12,8 +12,5 @@ if dstDir.exists():
 else:
     os.mkdir(dst_folder)
 
-file_name = ('main_8c.html', 'Agh__Driver_8c.html', 'Agh__Driver_8h.html',
-             'Clock__User_8c.html')
-
 retVal = subprocess.check_call("doxygen config-doxygen.conf", shell = True)
 
