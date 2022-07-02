@@ -10,6 +10,11 @@ if buildDir.exists():
 else:
     os.mkdir(buildPath)
 # os.chdir('src')
+
+retVal = subprocess.check_call("msp430-gcc-4.6.3 -c -Iinclude/ -mmcu=msp430g2553 src/Gpio_Driver.c -o build/Gpio_Driver.o", shell = True)
+if(retVal == 0):
+    print('Gpio_Driver.o')
+
 retVal = subprocess.check_call("msp430-gcc-4.6.3 -c -Iinclude/ -mmcu=msp430g2553 src/Gpio_User.c -o build/Gpio_User.o", shell = True)
 if(retVal == 0):
     print('Gpio_User.o')
