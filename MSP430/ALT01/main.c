@@ -25,7 +25,7 @@ int main(void)
 
   // Initialization
   CLK_v_clockInit();
-  gpioInit();
+  GPIOU_v_init();
   gpioConf();
   CLK_v_timerAInit();
 
