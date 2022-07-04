@@ -24,11 +24,23 @@
 #define SENSOR3  (uint8)0x04u
 #define SENSOR4  (uint8)0x08u
 
+typedef enum Port
+{
+  Port1 = 1,
+  Port2
+}t_Port;
+
 typedef enum
 {
   High = True,
   Low  = False
-} t_GpioState;
+} t_ChannelState;
+
+typedef enum
+{
+  Input  = 0x00u,
+  Output = 0xFFu
+} t_DirState;
 
 void  GPIOU_v_init(void);
 
@@ -41,8 +53,8 @@ uint8 gpioReadBit(uint8 u_bit, uint8 u_port);
  * GPIOU_u_readChannel
  * Read channel for each port
  *
- * \param [in] u_port:    Port 1 or 2 of MSP430g2553 \n
- *                        data_type  = uint8 (0-255) \n
+ * \param [in] e_port:    Port 1 or 2 of MSP430g2553 \n
+ *                        data_type  = t_Port (0-255) \n
  *                        resolution = 1 -> port 1, 2 -> port2
  * \param [in] u_channel: Bit of the port \n
  *                        data_type  = uint8 (0-255) \n
@@ -50,15 +62,15 @@ uint8 gpioReadBit(uint8 u_bit, uint8 u_port);
  *
  *  \return retValue: Return True or False
  */
-uint8 GPIOU_u_readChannel(uint8 u_port, uint8 u_channel);
+uint8 GPIOU_u_readChannel(t_Port e_port, uint8 u_channel);
 
 /**
  *
- * GPIOU_v_writeChannel
- * Read channel for each port
+ * GPIOU_v_setChannelState
+ * Set channel's state
  *
- * \param [in] u_port:    Port 1 or 2 of MSP430g2553 \n
- *                        data_type  = uint8 (0-255) \n
+ * \param [in] e_port:    Port 1 or 2 of MSP430g2553 \n
+ *                        data_type  = t_Port (0-255) \n
  *                        resolution = 1 -> port 1, 2 -> port2
  * \param [in] u_channel: Bit of the port \n
  *                        data_type  = uint8 (0-255) \n
@@ -68,6 +80,25 @@ uint8 GPIOU_u_readChannel(uint8 u_port, uint8 u_channel);
  *                        resolution = True/False
  *
  */
-void  GPIOU_v_writeChannel(uint8 u_port, uint8 u_channel, t_GpioState e_state);
+void  GPIOU_v_setChannelState(t_Port e_port, uint8 u_channel, t_ChannelState e_state);
+
+/**
+ *
+ * GPIOU_v_setChannelDir
+ * Set channel's direction
+ *
+ * \param [in] e_port:    Port 1 or 2 of MSP430g2553 \n
+ *                        data_type  = t_Port (0-255) \n
+ *                        resolution = 1 -> port 1, 2 -> port2
+ * \param [in] u_channel: Bit of the port \n
+ *                        data_type  = uint8 (0-255) \n
+ *                        resolution = Bit0 to Bit7
+ * \param [in] e_dir:   State of bit to write \n
+ *                        data_type  = t_DirState (Input / Output) \n
+ *                        resolution = True/False
+ *
+ */
+void GPIOU_v_setChannelDir(t_Port e_port, uint8 u_channel, t_DirState e_dir);
+
 
 #endif

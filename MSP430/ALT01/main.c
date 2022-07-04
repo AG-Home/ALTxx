@@ -11,6 +11,7 @@
 #include <Interrupt_User.h>
 #include <msp430g2553.h>
 #include <stdint.h>
+#include <Gpio_Service.h>
 
 /**
  *
@@ -25,7 +26,7 @@ int main(void)
 
   // Initialization
   CLK_v_clockInit();
-  GPIOU_v_init();
+  GPIOS_v_init();
   gpioConf();
   CLK_v_timerAInit();
 

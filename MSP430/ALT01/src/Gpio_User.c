@@ -8,11 +8,7 @@
 #include <Gpio_Driver.h>
 #include <Gpio_User.h>
 
-enum Port
-{
-  Port1 = 1,
-  Port2
-};
+
 
 void GPIOU_v_init(void)
 {
@@ -68,12 +64,12 @@ uint8 gpioReadBit(uint8 u_bit, uint8 u_port)
   return retValue;
 }
 
-uint8 GPIOU_u_readChannel(uint8 u_port, uint8 u_channel)
+uint8 GPIOU_u_readChannel(t_Port e_port, uint8 u_channel)
 {
   uint8 retValue;
 
   // switch for selecting port
-  switch(u_port)
+  switch(e_port)
   {
     case Port1:
       if((u_channel & P1IN) == u_channel)
@@ -101,10 +97,10 @@ uint8 GPIOU_u_readChannel(uint8 u_port, uint8 u_channel)
   return retValue;
 }
 
-void GPIOU_v_writeChannel(uint8 u_port, uint8 u_channel, t_GpioState e_state)
+void GPIOU_v_setChannelState(t_Port e_port, uint8 u_channel, t_ChannelState e_state)
 {
   // switch for selecting port
-  switch(u_port)
+  switch(e_port)
   {
     case Port1:
       if(e_state == High)
@@ -123,6 +119,23 @@ void GPIOU_v_writeChannel(uint8 u_port, uint8 u_channel, t_GpioState e_state)
       {
         P2OUT &= ~u_channel; // write 0 in u_channel
       }
+      break;
+    default:
+      // Do nothing
+      break;
+  }
+}
+
+void GPIOU_v_setChannelDir(t_Port e_port, uint8 u_channel, t_DirState e_dir)
+{
+  // switch for selecting port
+  switch(e_port)
+  {
+    case Port1:
+      P1DIR |= u_channel & e_dir; // write the direction of u_channel
+      break;
+    case Port2:
+      P2DIR |= u_channel & e_dir; // write the direction of u_channel
       break;
     default:
       // Do nothing
