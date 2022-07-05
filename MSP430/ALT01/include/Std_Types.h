@@ -17,4 +17,10 @@ typedef unsigned short int uint16;
 typedef signed long int    sint32;
 typedef unsigned long int  uint32;
 
+typedef enum
+{
+  False = 0,
+  True
+}t_Bool;
+
 #endif
