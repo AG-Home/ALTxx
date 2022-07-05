@@ -9,8 +9,6 @@
 
 #include <Std_Types.h>
 
-#define INPUT    (uint8)0x00u
-#define ALL_BITS (uint8)0xFFu
 #define LED1     (uint8)0x01u
 #define LED2     (uint8)0x02u
 #define LED3     (uint8)0x04u
@@ -28,7 +26,7 @@ typedef enum Port
 {
   Port1 = 1,
   Port2
-}t_Port;
+} t_Port;
 
 typedef enum
 {
@@ -42,11 +40,18 @@ typedef enum
   Output = 0xFFu
 } t_DirState;
 
-void  GPIOU_v_init(void);
+typedef enum
+{
+  Gpio      = 0u,
+  Primary   = 1u,
+  Secondary = 2u
+} t_FunctionSelect;
 
-void  gpioConf(void);
-
-uint8 gpioReadBit(uint8 u_bit, uint8 u_port);
+typedef enum
+{
+  PullUp   = 0,
+  PullDown = 1
+} t_ResistorType;
 
 /**
  *
@@ -98,7 +103,58 @@ void  GPIOU_v_setChannelState(t_Port e_port, uint8 u_channel, t_ChannelState e_s
  *                        resolution = True/False
  *
  */
-void GPIOU_v_setChannelDir(t_Port e_port, uint8 u_channel, t_DirState e_dir);
+void  GPIOU_v_setChannelDir(t_Port e_port, uint8 u_channel, t_DirState e_dir);
 
+/**
+ *
+ * GPIOU_v_setChannelFunction
+ * Port pins are often multiplexed with other peripheral module functions
+ * select the pin function - I/O port or peripheral module function.
+ *
+ * \param [in] e_port:        Port 1 or 2 of MSP430g2553 \n
+ *                            data_type  = t_Port (0-255) \n
+ *                            resolution = 1 -> port 1, 2 -> port2
+ * \param [in] u_channel:     Bit of the port \n
+ *                            data_type  = uint8 (0-255) \n
+ *                            resolution = Bit0 to Bit7
+ * \param [in] e_pinFunction: State of bit to write \n
+ *                            data_type  = t_FunctionSelect \n
+ *                            resolution = Gpio/Primary/Secondary
+ *
+ */
+void  GPIOU_v_setChannelFunction(t_Port e_port, uint8 u_channel, t_FunctionSelect e_pinFunction);
+
+/**
+ *
+ * GPIOU_v_enableInternalRes
+ * Each u_channel in each e_port register enables the pullup/pulldown resistor of the corresponding I/O pin.
+ *
+ * \param [in] e_port:        Port 1 or 2 of MSP430g2553 \n
+ *                            data_type  = t_Port (0-255) \n
+ *                            resolution = 1 -> port 1, 2 -> port2
+ * \param [in] u_channel:     Bit of the port \n
+ *                            data_type  = uint8 (0-255) \n
+ *                            resolution = Bit0 to Bit7
+ * \param [in] e_pinFunction: State of bit to write \n
+ *                            data_type  = t_ResistorType \n
+ *                            resolution = PullUp/PullDown
+ *
+ */
+void  GPIOU_v_enableInternalRes(t_Port e_port, uint8 u_channel, t_ResistorType e_type);
+
+/**
+ *
+ * GPIOU_v_disableInternalRes
+ * Each u_channel in each e_port register disables the pullup/pulldown resistor of the corresponding I/O pin.
+ *
+ * \param [in] e_port:        Port 1 or 2 of MSP430g2553 \n
+ *                            data_type  = t_Port (0-255) \n
+ *                            resolution = 1 -> port 1, 2 -> port2
+ * \param [in] u_channel:     Bit of the port \n
+ *                            data_type  = uint8 (0-255) \n
+ *                            resolution = Bit0 to Bit7
+ *
+ */
+void  GPIOU_v_disableInternalRes(t_Port e_port, uint8 u_channel);
 
 #endif

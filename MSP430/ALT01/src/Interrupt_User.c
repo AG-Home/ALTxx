@@ -31,7 +31,7 @@ void INT_v_gpioIntEn(uint8_t u_dir)
   {
     P1IES |= SENSOR1 | SENSOR2 | SENSOR3 | SENSOR4; // The bits 0-3 are set with a high-to-low transition
   }
-  P1IFG &= ~ALL_BITS; //* clear interrupts
+  P1IFG &= ~0xFF; //* clear interrupts
 }
 
 void INT_v_systemTimerEn(void)
@@ -78,5 +78,5 @@ __interrupt void Port_1(void)
     default:
       break;
   }
-  P1IFG &= ~ALL_BITS;
+  P1IFG &= ~0xFF;
 }

@@ -27,7 +27,7 @@ int main(void)
   // Initialization
   CLK_v_clockInit();
   GPIOS_v_init();
-  gpioConf();
+  GPIOS_v_config();
   CLK_v_timerAInit();
 
   currentState = STARTUP;

@@ -5,7 +5,6 @@
 void AGH_v_startUpState(void)
 {
   uint8_t       index      = 4;
-  const uint8_t PORT1      = 1;
   uint8_t       sensors[4] = { 0, 0, 0, 0 };
   uint16_t      last       = 0;
   uint8_t       retVal     = 0;
@@ -15,7 +14,7 @@ void AGH_v_startUpState(void)
     switch(index)
     {
       case 4:
-        sensors[3] = gpioReadBit(SENSOR4, PORT1);
+        sensors[3] = GPIOU_u_readChannel(Port1, SENSOR4);
         sensors[3] ^= SENSOR4; //! invert valor because is inverted in HW
         if(sensors[3] == SENSOR4)
         {
@@ -25,7 +24,7 @@ void AGH_v_startUpState(void)
         index -= 1;
         break;
       case 3:
-        sensors[2] = gpioReadBit(SENSOR3, PORT1);
+        sensors[2] = GPIOU_u_readChannel(Port1, SENSOR3);
         sensors[2] ^= SENSOR3; //! invert valor because is inverted in HW
         if(last == 1 && sensors[2] == 0)
         {
@@ -39,7 +38,7 @@ void AGH_v_startUpState(void)
         index -= 1;
         break;
       case 2:
-        sensors[1] = gpioReadBit(SENSOR2, PORT1);
+        sensors[1] = GPIOU_u_readChannel(Port1, SENSOR2);
         sensors[1] ^= SENSOR2; //! invert valor because is inverted in HW
         if(last == 1 && sensors[1] == 0)
         {
@@ -53,7 +52,7 @@ void AGH_v_startUpState(void)
         index -= 1;
         break;
       case 1:
-        sensors[0] = gpioReadBit(SENSOR1, PORT1);
+        sensors[0] = GPIOU_u_readChannel(Port1, SENSOR1);
         sensors[0] ^= SENSOR1; //! invert valor because is inverted in HW
         if(last == 1 && sensors[0] == 0)
         {
