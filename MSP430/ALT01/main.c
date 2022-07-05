@@ -11,7 +11,7 @@
 #include <Interrupt_User.h>
 #include <msp430g2553.h>
 #include <stdint.h>
-#include <Gpio_Service.h>
+#include <Sar.h>
 
 /**
  *
@@ -26,8 +26,7 @@ int main(void)
 
   // Initialization
   CLK_v_clockInit();
-  GPIOS_v_init();
-  GPIOS_v_config();
+  SAR_v_startUp();
   CLK_v_timerAInit();
 
   currentState = STARTUP;
