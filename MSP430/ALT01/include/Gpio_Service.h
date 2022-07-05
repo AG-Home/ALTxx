@@ -10,7 +10,21 @@
 
 #include <Std_Types.h>
 
+/**
+ *
+ * GPIOS_v_init
+ * GPIO Initialization
+ *
+ */
 void GPIOS_v_init(void);
+
+/**
+ *
+ * GPIOS_v_config
+ * GPIO Configuration for current project
+ *
+ */
+void GPIOS_v_config(void);
 
 
 #endif
