@@ -6,11 +6,14 @@
  ****************************************************************************/
 
 #include <Gpio_Service.h>
+#include <Icu_Service.h>
 
 void SAR_v_startUp(void)
 {
     GPIOS_v_init();
 
     GPIOS_v_config();
+
+    ICUS_v_init();
 }
 
