@@ -7,13 +7,15 @@
 
 #include <Gpio_Service.h>
 #include <Icu_Service.h>
+#include <Mcu_Service.h>
 
 void SAR_v_startUp(void)
 {
-    GPIOS_v_init();
+  MCUS_v_init();
 
-    GPIOS_v_config();
+  GPIOS_v_init();
 
-    ICUS_v_init();
+  GPIOS_v_config(); // TODO remove it
+
+  ICUS_v_init();
 }
-
