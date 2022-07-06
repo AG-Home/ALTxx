@@ -8,6 +8,12 @@
 #ifndef MCU_SERVICE_H
 #define MCU_SERVICE_H
 
+/**
+ *
+ * MCUS_v_init
+ * MCU initialization
+ *
+ */
 void MCUS_v_init(void);
 
 #endif
