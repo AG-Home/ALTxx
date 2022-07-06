@@ -23,6 +23,10 @@ retVal = subprocess.check_call("msp430-gcc-4.6.3 -c -Iinclude/ -mmcu=msp430g2553
 if(retVal == 0):
     print('Mcu_User.o')
 
+retVal = subprocess.check_call("msp430-gcc-4.6.3 -c -Iinclude/ -mmcu=msp430g2553 src/Mcu_Service.c -o build/Mcu_Service.o", shell = True)
+if(retVal == 0):
+    print('Mcu_Service.o')
+
 retVal = subprocess.check_call("msp430-gcc-4.6.3 -c -Iinclude/ -mmcu=msp430g2553 src/Clock_User.c -o build/Clock_User.o", shell = True)
 if(retVal == 0):
     print('Clock_User.o')
@@ -58,6 +62,7 @@ retVal = subprocess.check_call("msp430-gcc-4.6.3 -mmcu=msp430g2553 \
                                 build/Icu_Service.o \
                                 build/Agh_Driver.o \
                                 build/Mcu_User.o \
+                                build/Mcu_Service.o \
                                 build/Clock_User.o \
                                 build/Interrupt_User.o \
                                 build/Sar.o \
@@ -71,6 +76,7 @@ os.remove('build/Agh_Driver.o')
 os.remove('build/Gpio_User.o')
 os.remove('build/Gpio_Service.o')
 os.remove('build/Mcu_User.o')
+os.remove('build/Mcu_Service.o')
 os.remove('build/Clock_User.o')
 os.remove('build/Interrupt_User.o')
 os.remove('build/Icu_User.o')
