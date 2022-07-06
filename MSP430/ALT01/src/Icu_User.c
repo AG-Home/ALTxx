@@ -46,7 +46,7 @@ void ICUU_v_setEdgeGpioInt(t_Port e_port, uint8 u_channel, t_EdgeSelect e_edgeTy
   switch(e_port)
   {
     case Port1:
-      if(e_edgeType == EdgeUp)
+      if(e_edgeType == RisingEdge)
       {
         P1IES &= ~u_channel;
       } else {
@@ -54,7 +54,7 @@ void ICUU_v_setEdgeGpioInt(t_Port e_port, uint8 u_channel, t_EdgeSelect e_edgeTy
       }
       break;
     case Port2:
-      if(e_edgeType == EdgeUp)
+      if(e_edgeType == RisingEdge)
       {
         P2IES &= ~u_channel;
       } else {

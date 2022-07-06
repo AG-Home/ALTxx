@@ -8,7 +8,12 @@
 #ifndef ICU_SERVICE_H
 #define ICU_SERVICE_H
 
+/**
+ *
+ * ICUS_v_init
+ * ICU initialization
+ *
+ */
 void ICUS_v_init(void);
-
 
 #endif

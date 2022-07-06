@@ -10,8 +10,8 @@
 
 typedef enum
 {
-  EdgeUp   = 0,
-  EdgeDown = 1
+  RisingEdge  = 0,
+  FallingEdge = 1
 } t_EdgeSelect;
 
 #endif
