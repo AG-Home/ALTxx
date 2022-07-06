@@ -65,3 +65,13 @@ void ICUU_v_setEdgeGpioInt(t_Port e_port, uint8 u_channel, t_EdgeSelect e_edgeTy
       break;
   }
 }
+
+void ICUU_v_setGIESR(void)
+{
+  BIS_SR(GIE);
+}
+
+void ICUU_v_cleanGIESR(void)
+{
+  BIC_SR(GIE);
+}

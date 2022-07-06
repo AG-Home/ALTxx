@@ -18,5 +18,8 @@ void ICUU_v_disableGpioInt(t_Port e_port, uint8 u_channel);
 
 void ICUU_v_setEdgeGpioInt(t_Port e_port, uint8 u_channel, t_EdgeSelect e_edgeType);
 
+void ICUU_v_setGIESR(void);
+
+void ICUU_v_cleanGIESR(void);
 
 #endif
