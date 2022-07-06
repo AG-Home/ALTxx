@@ -8,6 +8,12 @@
 #ifndef SAR_H
 #define SAR_H
 
+/**
+ *
+ * SAR_v_startUp
+ * Starup sequence
+ *
+ */
 void SAR_v_startUp(void);
 
 #endif

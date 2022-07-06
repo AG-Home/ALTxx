@@ -25,7 +25,6 @@ int main(void)
   WDTCTL = WDTPW | WDTHOLD; //* stop watchdog timer
 
   // Initialization
-  CLK_v_clockInit();
   SAR_v_startUp();
   CLK_v_timerAInit();
 
