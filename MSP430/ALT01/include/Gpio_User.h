@@ -8,6 +8,7 @@
 #define GPIO_USER
 
 #include <Std_Types.h>
+#include <Gpio_Types.h>
 
 #define LED1     (uint8)0x01u
 #define LED2     (uint8)0x02u
@@ -21,37 +22,6 @@
 #define SENSOR2  (uint8)0x02u
 #define SENSOR3  (uint8)0x04u
 #define SENSOR4  (uint8)0x08u
-
-typedef enum Port
-{
-  Port1 = 1,
-  Port2
-} t_Port;
-
-typedef enum
-{
-  High = True,
-  Low  = False
-} t_ChannelState;
-
-typedef enum
-{
-  Input  = 0x00u,
-  Output = 0xFFu
-} t_DirState;
-
-typedef enum
-{
-  Gpio      = 0u,
-  Primary   = 1u,
-  Secondary = 2u
-} t_FunctionSelect;
-
-typedef enum
-{
-  PullUp   = 0,
-  PullDown = 1
-} t_ResistorType;
 
 /**
  *
