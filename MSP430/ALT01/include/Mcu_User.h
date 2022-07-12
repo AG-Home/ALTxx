@@ -9,6 +9,7 @@
 #define MCU_USER_H
 
 #include <Mcu_Types.h>
+#include <Std_Types.h>
 
 /**
  *
@@ -66,5 +67,17 @@ void MCUU_v_confBCO2(t_Selm e_selm, t_Divm e_divm, t_Sels e_sels, t_Divs e_divs,
  *
  */
 void MCUU_v_confControlTimerA0(t_Tassel e_tassel, t_Id e_id, t_Mc e_mc, t_Taclr e_taclr);
+
+/**
+ *
+ * MCUU_v_setMaxTimerA0Counter
+ * Configure TimerA
+ *
+ * \param [in] u_maxCount: period of timer A0 in ticks \n
+ *                         data_type  = uint16  \n
+ *                         resolution = 0 - 0xFFFF
+ *
+ */
+void MCUU_v_setMaxTimerA0Counter(uint16 u_maxCount);
 
 #endif

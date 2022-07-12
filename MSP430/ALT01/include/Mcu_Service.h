@@ -16,4 +16,12 @@
  */
 void MCUS_v_init(void);
 
+/**
+ *
+ * MCUS_v_gptConfig
+ * General Purpouse Timer configuration
+ *
+ */
+void MCUS_v_gptConfig(void);
+
 #endif

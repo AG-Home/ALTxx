@@ -51,34 +51,38 @@ typedef enum
   ExternalRes = 0b00000001
 } t_Dcor;
 
+// Timer_A clock source select
 typedef enum
 {
-  TasselTAClk = 0b0000000000,
-  TasselAClk  = 0b0100000000,
-  TasselSMClk = 0b1000000000,
-  TasselINClk = 0b1100000000
+  TasselTAClk = 0b0000000000, ///< TACLK
+  TasselAClk  = 0b0100000000, ///< ACLK
+  TasselSMClk = 0b1000000000, ///< SMCLK
+  TasselINClk = 0b1100000000  ///< INCLK
 } t_Tassel;
 
+// Input divider. These bits select the divider for the input clock.
 typedef enum
 {
-  IdOne   = 0b0000000000,
-  IdTwo   = 0b0001000000,
-  IdFour  = 0b0010000000,
-  IdEight = 0b0011000000
+  IdOne   = 0b0000000000, ///< /1
+  IdTwo   = 0b0001000000, ///< /2
+  IdFour  = 0b0010000000, ///< /4
+  IdEight = 0b0011000000  ///< /8
 } t_Id;
 
+// Mode control. Setting MCx = 00h when Timer_A is not in use conserves power.
 typedef enum
 {
-  StopMode       = 0b0000000000,
-  UpMode         = 0b0000010000,
-  ContinuousMode = 0b0000100000,
-  UpDownMode     = 0b0000110000
+  StopMode       = 0b0000000000, ///< Stop mode: the timer is halted.
+  UpMode         = 0b0000010000, ///< Up mode: the timer counts up to TACCR0.
+  ContinuousMode = 0b0000100000, ///< Continuous mode: the timer counts up to 0FFFFh.
+  UpDownMode     = 0b0000110000  ///< Up/down mode: the timer counts up to TACCR0 then down to 0000h.
 } t_Mc;
 
+// Timer_A clear,he TACLR bit is automatically reset and is always read as zero
 typedef enum
 {
-  Taclrclear = 0b0000000000,
-  Taclrset   = 0b0000000100
+  Taclrclear = 0b0000000000, ///< clear
+  Taclrset   = 0b0000000100  ///< reset
 } t_Taclr;
 
 #endif

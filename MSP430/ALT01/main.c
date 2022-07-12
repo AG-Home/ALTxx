@@ -22,16 +22,16 @@ int main(void);
 
 int main(void)
 {
-  WDTCTL = WDTPW | WDTHOLD; //* stop watchdog timer
+  WDTCTL = WDTPW | WDTHOLD; // stop watchdog timer
 
   // Initialization
   SAR_v_startUp();
-  CLK_v_timerAInit();
 
   currentState = STARTUP;
 
   INT_v_interruptEnable();
   INT_v_systemTimerEn();
+
   while(1)
   {
     if(systemCycle == 1)

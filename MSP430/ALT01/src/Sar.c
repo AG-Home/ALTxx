@@ -15,7 +15,9 @@ void SAR_v_startUp(void)
 
   GPIOS_v_init();
 
-  GPIOS_v_config(); // TODO remove it
-
   ICUS_v_init();
+
+  GPIOS_v_config();
+
+  MCUS_v_gptConfig();
 }

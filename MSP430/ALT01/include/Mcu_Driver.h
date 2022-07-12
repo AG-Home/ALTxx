@@ -8,7 +8,8 @@
 #ifndef MCU_DRIVER_H
 #define MCU_DRIVER_H
 
-#define REG_8BITS(address) *(unsigned char*)address ///< De-reference for 8bits register
+#define REG_8BITS(address)  *(unsigned char*)address    ///< De-reference for 8bits register
+#define REG_16BITS(address) *(signed short int*)address ///< De-reference for 16bits register
 
 // Basic Clock Module
 #define DCOCTL  REG_8BITS(0x0056) ///< DCO control register
@@ -17,24 +18,24 @@
 #define BCSCTL3 REG_8BITS(0x0053) ///< Basic clock system control 3
 
 // Timer0_A3
-#define TA0CTL   REG_8BITS(0x0160) ///< Timer0_A3 control
-#define TA0CCTL0 REG_8BITS(0x0162) ///< Timer0_A3 capture/compare control 0
-#define TA0CCTL1 REG_8BITS(0x0164) ///< Timer0_A3 capture/compare control 1
-#define TA0CCTL2 REG_8BITS(0x0166) ///< Timer0_A3 capture/compare control 2
-#define TA0R     REG_8BITS(0x0170) ///< Timer0_A3 counter
-#define TA0CCR0  REG_8BITS(0x0172) ///< Timer0_A3 capture/compare 0
-#define TA0CCR1  REG_8BITS(0x0174) ///< Timer0_A3 capture/compare 1
-#define TA0CCR2  REG_8BITS(0x0176) ///< Timer0_A3 capture/compare 2
+#define TA0CTL   REG_16BITS(0x0160) ///< Timer0_A3 control
+#define TA0CCTL0 REG_16BITS(0x0162) ///< Timer0_A3 capture/compare control 0
+#define TA0CCTL1 REG_16BITS(0x0164) ///< Timer0_A3 capture/compare control 1
+#define TA0CCTL2 REG_16BITS(0x0166) ///< Timer0_A3 capture/compare control 2
+#define TA0R     REG_16BITS(0x0170) ///< Timer0_A3 counter
+#define TA0CCR0  REG_16BITS(0x0172) ///< Timer0_A3 capture/compare 0
+#define TA0CCR1  REG_16BITS(0x0174) ///< Timer0_A3 capture/compare 1
+#define TA0CCR2  REG_16BITS(0x0176) ///< Timer0_A3 capture/compare 2
 
 // Timer1_A3
-#define TA1CTL   REG_8BITS(0x0180) ///< Timer1_A3 control
-#define TA1CCTL0 REG_8BITS(0x0182) ///< Timer1_A3 capture/compare control 0
-#define TA1CCTL1 REG_8BITS(0x0184) ///< Timer1_A3 capture/compare control 1
-#define TA1CCTL2 REG_8BITS(0x0186) ///< Timer1_A3 capture/compare control 2
-#define TA1R     REG_8BITS(0x0190) ///< Timer1_A3 counter
-#define TA1CCR0  REG_8BITS(0x0192) ///< Timer1_A3 capture/compare 0
-#define TA1CCR1  REG_8BITS(0x0194) ///< Timer1_A3 capture/compare 1
-#define TA1CCR2  REG_8BITS(0x0196) ///< Timer1_A3 capture/compare 2
+#define TA1CTL   REG_16BITS(0x0180) ///< Timer1_A3 control
+#define TA1CCTL0 REG_16BITS(0x0182) ///< Timer1_A3 capture/compare control 0
+#define TA1CCTL1 REG_16BITS(0x0184) ///< Timer1_A3 capture/compare control 1
+#define TA1CCTL2 REG_16BITS(0x0186) ///< Timer1_A3 capture/compare control 2
+#define TA1R     REG_16BITS(0x0190) ///< Timer1_A3 counter
+#define TA1CCR0  REG_16BITS(0x0192) ///< Timer1_A3 capture/compare 0
+#define TA1CCR1  REG_16BITS(0x0194) ///< Timer1_A3 capture/compare 1
+#define TA1CCR2  REG_16BITS(0x0196) ///< Timer1_A3 capture/compare 2
 
 // Calibration Data
 #define CALDCO_16MHZ REG_8BITS(0x10F8) ///< DCO 16MHz calibration

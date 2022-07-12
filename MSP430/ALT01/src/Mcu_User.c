@@ -43,3 +43,9 @@ void MCUU_v_confControlTimerA0(t_Tassel e_tassel, t_Id e_id, t_Mc e_mc, t_Taclr 
 {
   TA0CTL |= e_tassel | e_id | e_mc | e_taclr;
 }
+
+void MCUU_v_setMaxTimerA0Counter(uint16 u_maxCount)
+{
+  // substract 1 because the count starts from 0
+  TA0CCR0 = u_maxCount - 1;
+}
